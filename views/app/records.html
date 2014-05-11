@@ -1,0 +1,46 @@
+<Body:>
+  <div class="row">
+    <form class="span12 form-inline" x-bind="submit: records.add">
+      <h3>Добавить потраченное</h3>
+      <fieldset>
+        <input type="text" value={_page.newRecord.amount} placeholder="0 руб.">
+        <input type="text" value={_page.newRecord.category} placeholder="Категория" data-provide="typeahead" data-source=
+        '{{_page.user.categories}}'>
+        <input type="text" value={_page.newRecord.comment} placeholder="Комментарий">
+        <button type="submit" class="btn">Добавить</button>
+      </fieldset>
+    </form>
+  </div>
+  <div class="row">
+    <div class="span6">
+      <div class="highcharts-container"></div>
+    </div>
+    <div class="span6">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>На что</th>
+            <!-- <th>Когда</th> -->
+            <th>Сколько</th>
+            <th>Комментарий</th>
+          </tr>
+        </thead>
+        <tbody>
+          {#each _page.records as :record}
+            <tr>
+              <td>{{:record.category}}</td>
+              <!-- <td>{{:record.date}}</td> -->
+              <td>{{:record.amount}}</td>
+              <td>{{:record.comment}}</td>
+              <td><button class="btn" x-bind="click: records.remove">Удалить</button></td>
+            </tr>
+          {/}
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="row">
+    <div class="span6 visits">
+      <b>{_page.user.visits}</b> - столько раз мы выдели тебя тут
+    </div>
+  </div>
